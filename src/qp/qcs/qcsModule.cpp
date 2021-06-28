@@ -93,19 +93,19 @@ IDE_RC qcsModule::openModule( SChar  * aModule,
     IDE_DASSERT( aModuleLibrary != NULL );
     
     //--------------------------------------------
-    // ì´ë¯¸ moduleì´ openëœ ê²½ìš° closeí•œë‹¤.
+    // ÀÌ¹Ì moduleÀÌ openµÈ °æ¿ì closeÇÑ´Ù.
     //--------------------------------------------
     
     (void) finalize();
     
     //--------------------------------------------
-    // moduleì„ opení•œë‹¤.
+    // moduleÀ» openÇÑ´Ù.
     //--------------------------------------------
 
     if ( idlOS::strcasecmp( aModule, "altibase" ) == 0 )
     {
         //--------------------------------------------
-        // altibase ë‚´ë¶€ ëª¨ë“ˆ open
+        // altibase ³»ºÎ ¸ðµâ open
         //--------------------------------------------
         
         idlOS::snprintf( gQcsModuleName,
@@ -120,7 +120,7 @@ IDE_RC qcsModule::openModule( SChar  * aModule,
     else
     {
         //--------------------------------------------
-        // x. ì§€ì›í•˜ëŠ” moduleì´ ì•„ë‹ˆë©´ ì—ëŸ¬
+        // x. Áö¿øÇÏ´Â moduleÀÌ ¾Æ´Ï¸é ¿¡·¯
         //--------------------------------------------
         
         IDE_RAISE( ERR_INVALID_MODULE );        
@@ -1296,7 +1296,7 @@ IDE_RC qcsModule::encryptColumn( qcStatement   * aStatement,
     IDE_DASSERT( aDestColumn != NULL );
     IDE_DASSERT( aDestValue != NULL );
     
-    // char->echar, varchar->evarcharê°€ ì•„ë‹ˆë¼ë©´ ì—ëŸ¬
+    // char->echar, varchar->evarchar°¡ ¾Æ´Ï¶ó¸é ¿¡·¯
     IDE_TEST_RAISE( ( (aSrcColumn->module->id != MTD_CHAR_ID) ||
                       (aDestColumn->module->id != MTD_ECHAR_ID) )
                     &&
@@ -1304,7 +1304,7 @@ IDE_RC qcsModule::encryptColumn( qcStatement   * aStatement,
                       (aDestColumn->module->id != MTD_EVARCHAR_ID) ),
                     ERR_INVALID_ENCRYPTED_COLUMN );
     
-    // ë™ì¼í•œ precisionì´ ì•„ë‹ˆë¼ë©´ ì—ëŸ¬
+    // µ¿ÀÏÇÑ precisionÀÌ ¾Æ´Ï¶ó¸é ¿¡·¯
     IDE_TEST_RAISE( aSrcColumn->precision != aDestColumn->precision,
                     ERR_INVALID_ENCRYPTED_COLUMN );
 
@@ -1336,7 +1336,7 @@ IDE_RC qcsModule::encryptColumn( qcStatement   * aStatement,
             // encode ecc value
             if ( aDestColumn->module->id == MTD_ECHAR_ID )
             {
-                // sCharValueì—ì„œ space padingì„ ì œì™¸í•œ ê¸¸ì´ë¥¼ ì°¾ëŠ”ë‹¤.
+                // sCharValue¿¡¼­ space padingÀ» Á¦¿ÜÇÑ ±æÀÌ¸¦ Ã£´Â´Ù.
                 for( sLength = sCharValue->length; sLength > 1; sLength-- )
                 {
                     if( sCharValue->value[sLength - 1] != ' ' )
@@ -1388,7 +1388,7 @@ IDE_RC qcsModule::encryptColumn( qcStatement   * aStatement,
             
             if ( aDestColumn->module->id == MTD_ECHAR_ID )
             {
-                // sCharValueì—ì„œ space padingì„ ì œì™¸í•œ ê¸¸ì´ë¥¼ ì°¾ëŠ”ë‹¤.
+                // sCharValue¿¡¼­ space padingÀ» Á¦¿ÜÇÑ ±æÀÌ¸¦ Ã£´Â´Ù.
                 for( sLength = sCharValue->length; sLength > 1; sLength-- )
                 {
                     if( sCharValue->value[sLength - 1] != ' ' )
@@ -1453,7 +1453,7 @@ IDE_RC qcsModule::decryptColumn( qcStatement   * aStatement,
     IDE_DASSERT( aDestColumn != NULL );
     IDE_DASSERT( aDestValue != NULL );
 
-    // echar->char, evarchar->varcharê°€ ì•„ë‹ˆë¼ë©´ ì—ëŸ¬
+    // echar->char, evarchar->varchar°¡ ¾Æ´Ï¶ó¸é ¿¡·¯
     IDE_TEST_RAISE( ( (aSrcColumn->module->id != MTD_ECHAR_ID) ||
                       (aDestColumn->module->id != MTD_CHAR_ID) )
                     &&
@@ -1461,7 +1461,7 @@ IDE_RC qcsModule::decryptColumn( qcStatement   * aStatement,
                       (aDestColumn->module->id != MTD_VARCHAR_ID) ),
                     ERR_INVALID_ENCRYPTED_COLUMN );
 
-    // ë™ì¼í•œ precisionì´ ì•„ë‹ˆë¼ë©´ ì—ëŸ¬
+    // µ¿ÀÏÇÑ precisionÀÌ ¾Æ´Ï¶ó¸é ¿¡·¯
     IDE_TEST_RAISE( aSrcColumn->precision != aDestColumn->precision,
                     ERR_INVALID_ENCRYPTED_COLUMN );
 
